@@ -1,9 +1,25 @@
-- uses: deptools-io/scan-action@v1
-  with:
-    project-id: ${{ vars.DEPTOOLS_PROJECT_ID }}
-    api-key: ${{ secrets.DEPTOOLS_API_KEY }}
-    wait-for-result: true         # block until completed (default: false)
-    fail-on-cvss: CRITICAL        # optional: CRITICAL | HIGH | MODERATE | LOW
-    min-score: 7                  # optional: fail if score below this value (0–10)
-    fail-on-strong-copyleft: true # optional: fail if strong copyleft license detected
-    min-up-to-date: 80            # optional: fail if direct deps up-to-date % below this (0–100)
+name: Dependency Scan
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Run Deptools Scan
+        uses: deptools-io/scan-action@v1
+        with:
+          project-id: 8cb802e4-41a6-4527-a649-a83fbbc6c995
+          api-key: dtk_bb620feb15088d60f6e60985a37eec697cae38d63154e1b2956b123c873cacfc
+          wait-for-result: true
+          fail-on-cvss: CRITICAL
+          min-score: 7
+          fail-on-strong-copyleft: true
+          min-up-to-date: 80
