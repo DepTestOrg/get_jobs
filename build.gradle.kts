@@ -26,6 +26,8 @@ dependencies {
     implementation(platform("org.springframework.boot:spring-boot-dependencies:3.5.7"))
 
     // 受 BOM 管理的依赖（不写版本）
+    implementation("org.springframework.boot:spring-boot-starter-web")
+    implementation("org.springframework.boot:spring-boot-starter-jdbc")
     implementation("com.fasterxml.jackson.dataformat:jackson-dataformat-yaml")
     implementation("org.apache.httpcomponents.client5:httpclient5-fluent")
 
